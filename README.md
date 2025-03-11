@@ -1,7 +1,5 @@
 # 🦈shark2authdog🌭
 
-[Github repository](https://github.com/ariannelafraise/kerberos-hash-parser)↗
-
 A python script to parse **Kerberos Pre-Authentication** (PA) **hashes** (krb5pa), **from Wireshark** capture files containing KRB5 **AS-REQ** packets. These can be given to either **hashcat** or **john the ripper** to crack the user's password.
 
 Supports etype 18 (aes256-cts-hmac-sha1-96) & 23 (rc4-hmac), assuming *default salt strings*.
