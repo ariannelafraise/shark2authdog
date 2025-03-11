@@ -78,4 +78,3 @@ john --wordlist=wordlist.txt hash.txt
 ```bash
 john --show hash.txt
 ```
-test
