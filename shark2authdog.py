@@ -71,7 +71,7 @@ if __name__ == '__main__':
     args = sys.argv[1:]
 
     if len(args) != 2:
-        print("Usage: python main.py <pcap_file> <output_format: 'hashcat' or 'john'>")
+        print("Usage: python shark2authdog.py <pcap_file> <output_format: 'hashcat' or 'john'>")
         sys.exit(1)
 
     if args[0].split('.')[-1] not in FILETYPES:
