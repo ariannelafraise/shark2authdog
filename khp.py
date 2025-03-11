@@ -1,8 +1,9 @@
 import pyshark
 import sys
 
-filetypes = ['pcapng', 'pcap', 'cap']
-output_formats = ['hashcat', 'john']
+FILETYPES = ['pcapng', 'pcap', 'cap']
+OUTPUT_FORMATS = ['hashcat', 'john']
+SUPPORTED_ETYPES = ['18', '23']
 
 def parse_hashes(file, output_format):
     try:
@@ -27,7 +28,7 @@ def parse_hashes(file, output_format):
         try:
             etype = packet.kerberos.get("etype")
 
-            if etype != '18' and etype != '23':
+            if etype not in SUPPORTED_ETYPES:
                 continue
 
             cipher = packet.kerberos.get("cipher").replace(':', '')
@@ -73,15 +74,11 @@ if __name__ == '__main__':
         print("Usage: python main.py <pcap_file> <output_format: 'hashcat' or 'john'>")
         sys.exit(1)
 
-    if len(args) > 2:
-        print("Too many arguments")
-        sys.exit(1)
-
-    if args[0].split('.')[-1] not in filetypes:
+    if args[0].split('.')[-1] not in FILETYPES:
         print("Invalid file format")
         sys.exit(1)
 
-    if args[1].lower() not in output_formats:
+    if args[1].lower() not in OUTPUT_FORMATS:
         print("Invalid output format. Must be 'hashcat' or 'john'")
         sys.exit(1)
 
