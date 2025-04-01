@@ -4,8 +4,14 @@ A python script to parse **Kerberos Pre-Authentication** (PA) **hashes** (krb5pa
 
 Supports etype 18 (aes256-cts-hmac-sha1-96) & 23 (rc4-hmac), assuming *default salt strings*.
 
+*To know which type the hash is, look at its second portion: $krb5pa$TYPE(18 or 23)[...]*
+
 >The *default salt string*, if none is provided via pre-authentication data, is the concatenation of the principal's realm and name components, in order, with no separators.
 [RFC4120 - Section 4](https://datatracker.ietf.org/doc/html/rfc4120#section-4)↗
+
+## Why it works:
+To authenticate, the user sends a AS-REQ packet (pre-auth) containing a timestamp that is encrypted using a predefined mechanism (from etype), which includes using a secret key derived from the user's plain password. The server then does the same process with the user's plain password (from its database) and compares the results to see if passwords match. We can recreate this process to bruteforce it with a wordlist, which is what hashcat and john the ripper do. If results match, then we found the password!
+
 ## In action:
 
 [Using a sample capture file](https://wiki.wireshark.org/SampleCaptures#kerberos-and-keytab-file-for-decryption)↗
