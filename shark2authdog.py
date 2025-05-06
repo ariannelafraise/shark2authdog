@@ -5,7 +5,7 @@ FILETYPES = ['pcapng', 'pcap', 'cap']
 OUTPUT_FORMATS = ['hashcat', 'john']
 SUPPORTED_ETYPES = ['18', '23']
 
-def parse_hashes(file, output_format):
+def get_hashes(file, output_format):
     try:
         capture = pyshark.FileCapture(
             file,
@@ -15,7 +15,7 @@ def parse_hashes(file, output_format):
         print("File not found")
         sys.exit(1)
 
-    hashes = []
+    hashes = [].
 
     for packet in capture:
         etype = None
@@ -82,5 +82,5 @@ if __name__ == '__main__':
         print("Invalid output format. Must be 'hashcat' or 'john'")
         sys.exit(1)
 
-    for h in parse_hashes(args[0], args[1].lower()):
+    for h in get_hashes(args[0], args[1].lower()):
         print(h)
