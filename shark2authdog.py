@@ -41,7 +41,7 @@ def get_hashes(file, output_format):
 
         except AttributeError:
             continue
-        
+
         match etype:
             case '18':
                 # $krb5pa$etype$user$realm$cipher
@@ -53,8 +53,8 @@ def get_hashes(file, output_format):
             case '23':
                 # $krb5pa$etype$user$realm$salt$cipher+HMAC(128bits=32chars)
 
-                # The default salt string, if none is provided via 
-                # pre-authentication data, is the concatenation of 
+                # The default salt string, if none is provided via
+                # pre-authentication data, is the concatenation of
                 # the principal's realm and name components, in order,
                 # with no separators.
                 # https://datatracker.ietf.org/doc/html/rfc4120#section-4
